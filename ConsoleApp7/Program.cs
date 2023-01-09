@@ -5,22 +5,25 @@ namespace ConsoleApp7
     {
         static void Main(string[] args)
         {
-            DirectoryInfo di = new DirectoryInfo("c:\\");
-            var dirList = di.GetDirectories();
+            DirectoryInfo di = new DirectoryInfo("c:\\Program Files");
+            var dirList = di.GetDirectories();          
             foreach (var folder in dirList)
             {
-                Console.WriteLine(folder.Name);
+                Console.WriteLine(folder.Name + folder.GetFiles().Length);
+                Console.ForegroundColor = ConsoleColor.Red;
                 Dön(folder);
-            }
+            }            
         }
         static void Dön(DirectoryInfo di)
         {
             try
             {
+                
                 var dirList = di.GetDirectories();
                 foreach (var folder in dirList)
                 {
-                    Console.WriteLine(folder.Name);
+                    Console.WriteLine("_ " + folder.Name + "Byte: " + folder.GetFiles().Length);
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Dön(folder);
                 }
             }
@@ -30,5 +33,11 @@ namespace ConsoleApp7
             }
             
         }
+        private static long GetFileSizeBytes(DirectoryInfo di)
+        {
+            throw new NotImplementedException();
+        }
+        
+       
     }
 }
